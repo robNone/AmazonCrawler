@@ -1,0 +1,4 @@
+2017-12-21 14:18:42,096 mysql.py[line:46] INFO 'latin-1' codec can't encode character u'\uff08' in position 193: ordinal not in range(256)
+2017-12-21 14:18:42,109 mysql.py[line:47] INFO INSERT INTO beauty	VALUES ('B01MUCQKUU', '231', 'BESTOPE Hair Straightener Brush Anion Ceramic Heating Electric Straightening Brush With Anti-Scald Straightener Brush for Silky Straighten Brush（6 Temp Levels, Max 430&deg;F）', '5149', '50','14','3','28','4','77','2017-01-20 00:00:00','12' )
+2017-12-21 15:42:04,144 mysql.py[line:46] INFO 'latin-1' codec can't encode character u'\uff08' in position 193: ordinal not in range(256)
+2017-12-21 15:42:04,145 mysql.py[line:47] INFO INSERT INTO beauty	VALUES ('B01MUCQKUU', '231', 'BESTOPE Hair Straightener Brush Anion Ceramic Heating Electric Straightening Brush With Anti-Scald Straightener Brush for Silky Straighten Brush（6 Temp Levels, Max 430&deg;F）', '5149', '50','14','3','28','4','77','2017-01-20 00:00:00','12' )

@@ -1,0 +1,33 @@
+CREATE SCHEMA `amazon` DEFAULT CHARACTER SET utf8 COLLATE utf8_estonian_ci ;
+
+
+CREATE TABLE `amazon`.`beauty` (
+  `asin` VARCHAR(10) NOT NULL,
+  `Rank` INT NOT NULL,
+  `Title` VARCHAR(225) NOT NULL,
+  `Impressions` INT NOT NULL,
+  `Clicks` INT NOT NULL,
+  `Adds` INT NOT NULL,
+  `UnitsOrdered` INT NULL,
+  `Price` INT NOT NULL,
+  `AvgReviewRating` DATETIME NOT NULL,
+  `ReviewCount` INT NOT NULL,
+  `ProductAvailableDay` DATETIME NOT NULL,
+  `3POffers` INT NOT NULL);
+
+CREATE TABLE `amazon`.`SearchWords` (
+  `Keywords` VARCHAR(22) NOT NULL,
+  `Rank` INT NOT NULL,
+  `QueryGroupCountDifference` INT NOT NULL,
+  `Current Query Group Count` INT NOT NULL,
+  `Previous Query Group Count` INT NOT NULL,
+  `CurrentSearchCount` INT NOT NULL,
+  `Previous Search Count` INT NOT NULL,
+  `Query Group Percent Change (%)` DECIMAL NOT NULL,
+  `Current Click Count` INT NOT NULL,
+  `Current Add Count` INT NOT NULL,
+  `Current Click Rate (%)` DECIMAL NOT NULL,
+  `Current Add Rate (%)` DECIMAL NOT NULL,
+  `Searchumb` INT NOT NULL,
+  `SearchFbaumb` INT NOT NULL);
+

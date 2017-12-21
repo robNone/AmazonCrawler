@@ -1,0 +1,116 @@
+ {% extends 'layout.html' %}
+{% block title %}Search results{% endblock %}
+
+ {% block head %}  
+ 
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/gh-buttons.css') }}">
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}">
+ <style type="text/css">
+     
+.divcss5{width:300px;
+        height: 50px;
+        margin:0 auto;
+            } 
+.div-a{ float:left;width:35%;} 
+.div-b{ float:left;width:35%;} 
+.div-c{ float:left;width:25%;} 
+ 
+ </style>
+
+ {% endblock  %}
+{% block body %}
+
+<h2  class="h2"> 查询结果 {{count}}个 {{allpage}}页</h2>
+<table class="bordered">
+    <thead>
+
+    <tr>
+
+        <th>#</th>        
+        <th>asin</th>
+        <th width="100px">Brand Name</th>
+         <th>Title</th>
+           <th>review</th>
+           <th>reviewNumber</th>
+            <th width="100px"> </th>
+    </tr>
+    </thead>
+ 
+    {%for s in lis%}
+ <tr>
+        <td> {{s['a']}}</td>        
+        <td>{{s['asin']}}</td>
+
+        <td>{{s['Brand Name']}}</td>
+        <td>{{s['Title']}}</td>
+          <td>{{s['review']}}</td>
+           <td>{{s['reviewNumber']}}</td>
+           <td> <button class="button icon search" onclick="chAsin('{{s['asin']}}')">search</button> </td>
+    </tr>        
+    {% endfor %}    
+
+
+</table>
+
+<br />
+<div  class="divcss5" >
+<div  class="div-a">
+<button name='last' class="button icon arrowleft" id ="last" disabled="disabled" onclick="clast()" >Previous Page</button>
+</div>
+<div class="div-c">
+<h5>[{{now}}]</h5>
+	
+</div>
+
+<div class="div-b">
+<button id="next" class="button icon arrowright"  disabled="disabled"onclick="cnext()" > Next Page</button>
+</div>
+</div>
+
+
+<br><br>
+<br>
+    
+<script type="text/javascript">
+        
+    var now={{now}};
+    var allpage={{allpage}};
+    var key="{{key}}";
+
+ 
+    var next=  document.getElementById("next");
+    var last=  document.getElementById("last");
+
+ 
+    if (now==1) {
+		last.disabled=true;
+        next.disabled= false;
+    }
+    else if (now==allpage) { 
+
+        last.disabled= false;
+        next.disabled=true;
+    }else if ({{count}}==0){
+        next.disabled= false;
+        last.disabled= false;
+    }
+
+function chAsin(asin){
+	
+	var href='/asin/'+asin;
+	window.location.href=href;
+	
+}
+function clast() {
+    // body...
+    window.location.href='/getKey/?key='+key+'/?page='+(now-1);
+}
+function cnext() {
+    // body...
+    window.location.href='/getKey/?key='+key+'/?page='+(now+1);
+
+}
+</script>
+
+
+{% endblock %}

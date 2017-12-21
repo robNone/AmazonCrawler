@@ -1,0 +1,21 @@
+ 
+ 
+<script type="text/javascript">
+	var txt = '{{cw['txt']}}';
+	var count = {{cw['count']}};
+	var type = '{{cw['type']}}';
+
+	if(txt == '') {
+		window.location.href = '/';
+	}
+	if(count == 0) {
+			window.location.href = '/Add/'+txt+'/'+type;
+		}
+	else {
+
+		window.location.href = '/getKey/?key=' + txt + '/?page=1'
+	
+	 
+}        
+</script>
+

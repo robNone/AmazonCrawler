@@ -1,0 +1,19 @@
+2017-12-20 18:06:44,966 mysql.py[line:47] INFO (1406, "Data too long for column 'Title' at row 1")
+2017-12-20 18:06:44,967 mysql.py[line:48] INFO INSERT INTO beauty	VALUES ('B004Z209HS', '160', '
+                
+                    
+                    
+                
+
+                
+                    
+                    
+                        PURA DOR Organic Moroccan Argan Oil 100 Percent Pure Cold Pressed and USDA Organic Anti-Aging For Face, Hair, Skin and Nails, 4 Fluid Ounce
+                    
+                
+
+                
+                    
+                    
+                
+            ', '5987', '200','54','29','18','5','5554','2011-05-03 00:00:00','720' )
