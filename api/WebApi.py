@@ -127,7 +127,7 @@ def retJson(lis ,type):
 			asg.append({"asin":bea[0],'Rank':bea[1],'Title':bea[2],'Impressions':bea[3],'Clicks':bea[4],'Adds':bea[5],'UnitsOrdered':bea[6],'Price':bea[7],'AvgReviewRating':bea[8],'ReviewCount':bea[9],'ProductAvailableDay':bea[10],'3POffers':bea[11]})
 		else:
 			asg.append({'Keywords':bea[0],'Rank':bea[1],'QueryGroupCountDifference':bea[2],'Current Query Group Count':bea[3],'Previous Query Group Count':bea[4],'CurrentSearchCount':bea[5],'Previous Search Count':bea[6],'Query Group Percent Change (%)':bea[7],'Current Click Count':bea[8],'Current Add Count':bea[9],'Current Click Rate (%)':bea[10],'Current Add Rate (%)':bea[11],'Searchumb':bea[12],'SearchFbaumb':bea[13]})
-	sc= str(asg).replace(", u'",", '")
+	sc= str(asg).replace(", u'",", '").replace("{u'","{'")
 	return sc[:2]+sc[3:]
 @app.route('/selectAsin/<asin>')
 def selectAsin(asin):
