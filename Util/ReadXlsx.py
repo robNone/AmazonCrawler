@@ -22,14 +22,17 @@ class FileOperation(object):
 		p=list()
 		for i in range(len(sheets)):  
 			booksheet = workbook.sheet_by_name(sheets[i])
+			R=0
 			for row in range(booksheet.nrows):  
 				row_data = []  
-				for col in range(booksheet.ncols):  
-					cel = booksheet.cell(row, col)  
-					val = cel.value   
-					row_data.append(val)  
-				p.append(row_data) 
-		del p[0]
+				if R!=0:
+					for col in range(booksheet.ncols):  
+						cel = booksheet.cell(row, col)  
+						val = cel.value   
+						row_data.append(val)  
+				R+=1
+				if row_data!=[]:
+					p.append(row_data) 
 		return	p
 	def read(self):
 
@@ -39,4 +42,4 @@ class FileOperation(object):
 if __name__ == '__main__':
 	
 	sc=FileOperation()
-	print  len(sc.read())  
+	print  (sc.read())  
