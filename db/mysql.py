@@ -28,22 +28,24 @@ class db_mysql(object):
 				lis.append(x)
 		except Exception as e:
 			dblog.info(e)
-			return None
-		db.close()
+		finally:
+			db.close()
 		return lis
 		
 	def execute(self,sql):
 		db=self.openCon()
-		cursor = db.cursor()
+		cursor ,ret= db.cursor(),False
 		try:
 			# 执行sql语句
 			cursor.execute(sql)
 			# 提交到数据库执行
 			db.commit()
+			ret= True
 		except Exception as e:
 			# Rollback in case there is any error
 			db.rollback()
 			dblog.info(e)
-			dblog.info(sql)
 		# 关闭数据库连接
-		db.close()
+		finally:
+			db.close()
+		return ret

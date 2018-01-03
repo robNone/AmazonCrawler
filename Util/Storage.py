@@ -9,7 +9,7 @@ from LogHandler import LogHandler
 from ReadXlsx import FileOperation
 
 convert=LogHandler("con")
-class insert(object):
+class insertEx(object):
 	"""docstring for insert"""
 	def __init__(self):
 		super(insert, self).__init__()
@@ -26,11 +26,13 @@ class insert(object):
 			time.sleep(3)
 			x.start()
 
-
 	def beay(self ,mold):
 		cf=mold[6]
 		if mold[6]=='-':
 			cf=0
+		if mold[5]=='-':
+			mold[5]=0
+
 		try:
 			tim= xlrd.xldate.xldate_as_datetime(mold[11], 0)
 			sql= "INSERT INTO beauty	VALUES ('%s', '%d', '%s', '%d', '%d','%d','%d','%d','%d','%d','%s','%d' )" % \
@@ -58,8 +60,6 @@ class insert(object):
 							mold[5],mold[6], todem (mold[7]), mold[7], mold[9],
 							 todem(mold[10]), todem(mold[11]),
 							 int(tr[0]),int(tr[1]))
-
-		print sc
 		sql= "INSERT INTO SearchWords  VALUES "+sc
 		self.db.execute(sql)
 
