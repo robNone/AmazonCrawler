@@ -22,7 +22,15 @@ class GetConfig(object):
     @LazyProperty
     def db_type(self):
         return self.config_file.get('DB', 'type')
-
+    @LazyProperty
+    def  Redisdb_host(self):
+        return self.config_file.get('Redisdb', 'host')
+    @LazyProperty
+    def  Redisdb_port(self):
+        return self.config_file.get('Redisdb', 'port')
+    @LazyProperty
+    def  Redisdb_dbname(self):
+        return self.config_file.get('Redisdb', 'dbname')
     @LazyProperty
     def db_name(self):
         return self.config_file.get('DB', 'name')
@@ -61,7 +69,7 @@ class GetConfig(object):
 
 if __name__ == '__main__':
     gg = GetConfig()
-    print(gg.db_type)
+    print(gg.Redisdb_dbname)
     print(gg.db_name)
     print(gg.db_host)
     print(gg.db_port)

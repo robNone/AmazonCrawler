@@ -5,6 +5,9 @@ sys.path.append('../')
 from Util.GetConfig  import GetConfig
 from Util.LogHandler import LogHandler
 dblog=LogHandler('db',stream=False)
+from MySQLdb.constants import FIELD_TYPE
+
+
 
 class db_mysql(object):
 	"""docstring for db_mysql"""
@@ -13,8 +16,7 @@ class db_mysql(object):
 		self.config = GetConfig()
 
 	def openCon(self):
-		return  MySQLdb.connect(self.config.db_host,self.config.db_user,self.config.db_pwd,self.config.db_name) 
-
+		return  MySQLdb.connect(self.config.db_host,self.config.db_user,self.config.db_pwd,self.config.db_name,conv={ FIELD_TYPE.LONG: int },) 
 	def seclet(self,sql):
 		db=self.openCon()
 		lis=[]

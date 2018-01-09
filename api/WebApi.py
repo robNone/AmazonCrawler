@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 
 
-@app.route('/')
+@app.route('/#/')
 def hello_world():
 	return  render_template('fa.html')
  
@@ -109,7 +109,7 @@ def allow_cross_domain(fun):
 @app.route('/articles_list/contents/')  
 def json_contents():  
     response = make_response(jsonify(response=get_articles(ARTICLES_NAME)))  
-    response.headers['Access-Control-Allow-Origin'] = '*'  
+    response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'POST'  
     response.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'  
     return response
