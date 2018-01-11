@@ -46,11 +46,9 @@ class GetConfig(object):
     def db_pwd(self):
         return self.config_file.get('DB', 'pwd')
     @LazyProperty
-    def fi_pathbeauty(self):
-        return self.config_file.get('FilePath', 'beauty')
-    @LazyProperty
-    def fi_pathkeywords(self):
-        return self.config_file.get('FilePath', 'keywords')
+    def fi_path(self):
+        return self.config_file.get('FilePath', 'path')
+
     @LazyProperty
     def db_port(self):
         return int(self.config_file.get('DB', 'port'))
@@ -75,4 +73,4 @@ if __name__ == '__main__':
     print(gg.db_port)
     print(gg.db_pwd)
     print(gg.host_ip)
-    print(gg.fi_pathkeywords)
+    print(gg.path)

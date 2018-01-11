@@ -16,7 +16,9 @@ class db_mysql(object):
 		self.config = GetConfig()
 
 	def openCon(self):
-		return  MySQLdb.connect(self.config.db_host,self.config.db_user,self.config.db_pwd,self.config.db_name,conv={ FIELD_TYPE.LONG: int },) 
+		# if t=1:conv={ FIELD_TYPE.LONG: int }
+		# 	return 
+		return  MySQLdb.connect(host=self.config.db_host,port=self.config.db_port,user=self.config.db_user,passwd=self.config.db_pwd,db=self.config.db_name,conv={ FIELD_TYPE.LONG: int }) 
 	def seclet(self,sql):
 		db=self.openCon()
 		lis=[]
@@ -51,3 +53,5 @@ class db_mysql(object):
 		finally:
 			db.close()
 		return ret
+if __name__ == '__main__':
+	db_mysql().openCon()

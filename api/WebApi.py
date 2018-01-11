@@ -135,7 +135,6 @@ def retJson(lis ,type):
 	sc= str(asg).replace("{u'","{'").replace(", u'",", '")
 	print sc
 	return sc
-@app.route('/selectAsin/<asin>')
 def selectAsin(asin):
 	sql='select *from beauty where asin="%s" ;'%(asin)
 	# asg=[]

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-import sys ,xlrd,time ,datetime,multiprocessing
+import sys ,xlrd,time ,datetime,multiprocessing ,os
 from decimal import getcontext, Decimal   
 from keySearch import getTitle,getTcumb
 sys.path.append('../')
+from GetConfig import GetConfig
 from db.mysql import db_mysql
 from LogHandler import LogHandler
 from ReadXlsx import FileOperation
@@ -65,11 +66,56 @@ class insertEx(object):
 
 def todem(umg):
 	return  Decimal(umg).quantize(Decimal('0.00'))  
+
+
+class insertDB(object):
+	"""docstring for insertDB"""
+	def __init__(self,):
+		super(insertDB, self).__init__()
+		self.cl=FileOperation()
+		self.bea=self.cl.read()
+		self.keWord=self.cl.readkey()
+		self.db =db_mysql()
+	def asinInsert(self):
+		thread_list=[]
+		for mold in self.asin:
+			pw = multiprocessing.Process(target=self.asin, args=(mold,))
+			thread_list.append(pw)
+		for x in thread_list:
+			time.sleep(6)
+			x.start()
+class insertType(object):
+	"""docstring for insertType"""
+	def __init__(self,):
+		super(insertType, self).__init__()
+		self.path= GetConfig().fi_path
+		self.db =db_mysql()
+
+	def asinType(self):
+		sql,asinType, lis='',[], os.listdir(self.path+'/asins')
+		for x in lis:
+			asinType.append(x.replace(' ','').replace('.xlsx','').replace('ASIN',''))
+		sql="INSERT INTO asinType SET "
+		for ca in asinType:
+			self.db.execute(sql+"  idasinType=0,AsinType='"+ca+"';")
+	def movertype(self):
+		filepath,lis ,sql=os.listdir(self.path+'/mover'),[],"INSERT INTO moverType SET "
+		for x in filepath:
+			lis+= FileOperation(self.path+'/mover/'+x).getSheets()
+		for cs in lis:
+			print cs.encode("utf8")
+			self.db.execute(sql+" TypeId=0, moverTypecol='"+cs+"'")
+
+	def SearchTermType(self):
+		filepath,lis ,sql=os.listdir(self.path+'/search term'),[],"INSERT INTO SearchTermType SET "	
+		for x in filepath:
+			lis+= FileOperation(self.path+'/search term/'+x).getSheets()
+		for cs in lis:
+			print cs.encode("utf8")
+			self.db.execute(sql+" typeId=0, Type='"+cs+"'")
 if __name__ == '__main__':	
-	sc=insert()
-	sc.beaInsert()
-	tim= xlrd.xldate.xldate_as_datetime( 41569, 0)
-	print tim
+	sc=insertType()
+	sc.SearchTermType()
 # ('%s', '%f', '%f', '%f', '%f','%f','%f','%f','%f','%f','%f','%f', '%d','%d')" % \
 # 					(mold[0], int (mold[1]), int(mold[2]), int(mold[3]),
 # 						int(mold[4]),

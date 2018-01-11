@@ -6,17 +6,17 @@ from GetConfig import GetConfig
 reload(sys) 
 sys.path.append('../')
 sys.setdefaultencoding('utf8')  
+
 class FileOperation(object):
 	"""docstring for read"""
-	
-	def __init__(self):
-
+	def __init__(self,path):
 		super(FileOperation, self).__init__()
-		con= GetConfig()
-		self.filepathbea=con.fi_pathbeauty
-		self.filepathkey=con.fi_pathkeywords
-	def getLisKey(self ,path):
-		workbook = xlrd.open_workbook(path)
+		self.filepath=path
+	def getSheets(self):
+		workbook = xlrd.open_workbook(self.filepath)
+		return workbook.sheet_names()  
+	def getLisKey(self ):
+		workbook = xlrd.open_workbook(self.filepath)
 		sheets = workbook.sheet_names()  
 		print(str(sheets))  
 		p=list()
@@ -32,13 +32,8 @@ class FileOperation(object):
 						row_data.append(val)  
 				R+=1
 				if row_data!=[]:
-					p.append(row_data) 
+					p.append(row_data.append(booksheet)) 
 		return	p
-	def read(self):
-
-		return self.getLisKey(self.filepathbea)
-	def readkey(self):
-		return self.getLisKey(self.filepathkey)
 if __name__ == '__main__':
 	
 	sc=FileOperation()
